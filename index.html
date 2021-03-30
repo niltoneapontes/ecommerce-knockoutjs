@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+        <title>Nilton's Store</title>
+</head>
+
+<body class="container-fluid">
+    <!-- ko if: isReady -->
+    <header class="row pt-4 pb-4 d-flex justify-content-between">
+        <div class="col-3 d-flex align-items-center justify-content-center">    
+            <img src="shopping-cart.png" alt="Carrinho de compras" width="52">
+            <h2 class="d-flex justify-content-center">Nilton's Store</h2>
+        </div>
+        <ul class="nav col-4 d-flex justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Jogos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Consoles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Acessórios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex align-items-center" href="#" data-toggle="modal" data-target="#cartModal">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p class="mb-0" data-bind="text: itemsInCartFormatted"> (0)</p>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <main class="container pt-5">
+        <h1 class="text-center">Welcome to a great e-commerce. Start shopping now!</h1>
+        <div class="carousel">
+            <img src="https://images.unsplash.com/photo-1580327344181-c1163234e5a0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80" alt="Vídeo games 1">
+            <img src="https://images.unsplash.com/photo-1486572788966-cfd3df1f5b42?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="Vídeo games 2">
+            <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Vídeo games 3">
+        </div>
+        <ul class="row">
+            <!-- ko foreach: availableItems -->
+            <li class="col-4">
+                <div
+                    class="card bg-light mb-3 mt-3 pt-3 pb-3 d-flex flex-column align-items-center justify-content-center">
+                    <img height="160" data-bind="attr: { src: image_url, alt: name }">
+                    <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
+                    <p class="card-text" data-bind="formatPrice: price"></p>
+                    <button type="button" class="btn btn-primary" data-bind="click: $parent.addToCart">Comprar agora</button>
+                </div>
+            </li>
+            <!-- /ko -->
+        </ul>
+        <div class="modal" id="cartModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Carrinho de compras</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- ko if: itemsInCart().length > 0 -->
+                        <ul>
+                            <!-- ko foreach: itemsInCart -->
+                            <li
+                                class="card bg-light mb-3 mt-3 pt-3 pb-3 pl-4 pr-4 d-flex flex-row align-items-center justify-content-between">
+                                <img height="120" data-bind="attr: { src: image_url, alt: name }">
+                                <div class=" ml-3 d-flex align-items-center flex-column justify-content-center">
+
+                                <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
+                                    <p class="d-flex"><strong>Preço Unit.: </strong> <span class="card-text" data-bind="formatPrice: price"></span></p>
+                                    <label>
+                                        <strong>Quantidade: </strong>
+                                        <input type="number"
+                                        data-bind="textInput: quantity, event: {change: $parent.changeQuantity}">
+                                    </label>
+                                </div>
+                            </li>
+                            <!-- /ko -->
+                        </ul>
+                            <!-- /ko -->
+                        <!-- ko if: itemsInCart().length === 0 -->
+                        <h3>Oops... Não tem nada por aqui 😥</h3>
+                        <p>Adicione um item ao seu carrinho.</p>
+                            <!-- /ko -->
+
+                    </div>
+                    <div class="modal-footer">
+                        <p><strong>Total: </strong><span data-bind="text: total"></span></p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#finishOrder"
+                            data-bind="enable: itemsInCart().length > 0" data-dismiss="modal">Finalizar Compra</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="finishOrder" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Finalizar Compra</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Total: </strong> <span data-bind="text: total"></span></p>
+                        <div class="shipping-options">
+                            <h3>Endereço para entrega:</h3>
+                            <!-- ko if: addressesBook().length === 0 -->
+                            <p><strong>Você não tem endereços cadastrados</strong></p>
+                            <!-- /ko -->
+                            <!-- ko foreach: addressesBook -->
+
+                            <!-- ko if: $data === $parent.selectedAddress() -->
+                            <div class="selectable selected card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
+                                data-bind="click: $parent.selectAddress">
+                                <strong data-bind="text: alias"></strong>
+                                <p>
+                                    <span data-bind="text: cep"></span>,
+                                    <span data-bind="text: logradouro"></span>,
+                                    <span data-bind="text: numero"></span>,
+                                    <span data-bind="text: bairro"></span>,
+                                    <span data-bind="text: complemento"></span>,
+                                    <span data-bind="text: cidade"></span>,
+                                    <span data-bind="text: estado"></span>.
+                                </p>
+                                <a href="#" data-bind="click: $parent.removeAddress">Remover</a>
+                            </div>
+                            <!-- /ko -->
+                            <!-- ko ifnot: $data === $parent.selectedAddress() -->
+                            <div class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
+                                data-bind="click: $parent.selectAddress">
+                                <strong data-bind="text: alias"></strong>
+                                <p>
+                                    <span data-bind="text: cep"></span>,
+                                    <span data-bind="text: logradouro"></span>,
+                                    <span data-bind="text: numero"></span>,
+                                    <span data-bind="text: bairro"></span>,
+                                    <span data-bind="text: complemento"></span>,
+                                    <span data-bind="text: cidade"></span>,
+                                    <span data-bind="text: estado"></span>.
+                                </p>
+                                <a href="#" data-bind="click: $parent.removeAddress">Remover</a>
+                            </div>
+                            <!-- /ko -->
+
+                            <!-- /ko -->
+                            <a href="#" data-toggle="modal" data-target="#addNewAddress">Adicionar endereço</a>
+                        
+                        </div>
+                        <hr>
+                        <!-- ko if: selectedAddress().cep -->
+                            <div class="payment-options">
+                                <h3>Selecione a forma de pagamento</h3>
+                                <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
+                                    data-bind="click: selectPayment(1)"
+                                    id="boleto">
+                                    Boleto
+                                </a>
+                                <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
+                                    data-bind="click: selectPayment(2)"
+                                    id="cartao">
+                                    Cartão
+                                </a>
+                                <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
+                                    data-bind="click: selectPayment(3)"
+                                    id="pix">
+                                    PIX
+                                </a>
+                                <a data-bind=" visible: 0, click: selectPayment(4)"></a>
+                            </div>
+                        <!-- /ko -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-bind="click: finishOrder, enable: selectedPayment().length > 0">Finalizar Compra</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="addNewAddress" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Adicionar um endereço</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label>
+                            Nome do endereço *
+                            <input type="text" id="alias" class="pl-2 form-control" data-bind="textInput: alias"
+                                placeholder="Ex.: Casa, Trabalho...">
+                        </label>
+                        <label>
+                            Nome completo *
+                            <input type="text" id="nome" class="pl-2 form-control" data-bind="textInput: nome"
+                                placeholder="Ex.: João da Silva...">
+                        </label>
+                        <label>
+                            CEP *
+                            <input type="text" id="cep" class="pl-2 form-control" data-bind="textInput: cep"
+                                placeholder="Ex.: 00000-000">
+                        </label>
+                        <label>
+                            Logradouro *
+                            <input type="text" id="logradouro" class="pl-2 form-control" data-bind="textInput: logradouro"
+                                placeholder="Ex.: Rua do Sol...">
+                        </label>
+                        <label>
+                            Número *
+                            <input type="text" id="numero" class="pl-2 form-control" data-bind="textInput: numero"
+                                placeholder="Ex.: 10">
+                        </label>
+                        <label>
+                            Bairro *
+                            <input type="text" id="bairro" class="pl-2 form-control" data-bind="textInput: bairro"
+                                placeholder="Ex.: Cidade Alta...">
+                        </label>
+                        <label>
+                            Complemento
+                            <input type="text" id="complemento" class="pl-2 form-control" data-bind="textInput: complemento"
+                                placeholder="Ex.: Apto, casa...">
+                        </label>
+                        <label>
+                            Cidade *
+                            <input type="text" id="cidade" class="pl-2 form-control" data-bind="textInput: cidade"
+                                placeholder="Ex.: São Paulo, Recife...">
+                        </label>
+                        <label>
+                            Estado *
+                            <input type="text" id="estado" class="pl-2 form-control" data-bind="textInput: estado"
+                                placeholder="Ex.: PE, SP, RS...">
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-toggle="modal"
+                            data-bind="click: $data.addNewAddress, enable: itemsInCart().length > 0">Adicionar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- /ko -->
+    <!-- ko ifnot: isReady-->
+        <div class="container d-flex flex-column align-items-center justify-content-center loading-wrapper">
+            <img class="loader" src="loading.png" alt="loader" width="52">
+            <h2>Carregando...</h2>
+        </div>
+    <!-- /ko -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"
+        integrity="sha512-vs7+jbztHoMto5Yd/yinM4/y2DOkPLt0fATcN+j+G4ANY2z4faIzZIOMkpBmWdcxt+596FemCh9M18NUJTZwvw=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.4/knockout.validation.min.js"
+        integrity="sha512-b99MDNv5TqiZtPKH2UeHzDAVydmgrOJEPtaPPEF8AgV86eYyqINFI/K7/7f0+R4WNTAVv8KvvpjwfOYHv5rd5g=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.4/knockout.validation.min.js" integrity="sha512-b99MDNv5TqiZtPKH2UeHzDAVydmgrOJEPtaPPEF8AgV86eYyqINFI/K7/7f0+R4WNTAVv8KvvpjwfOYHv5rd5g==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>    <script src="index.js"></script>
+    <script type="text/javascript">
+        $('.carousel').slick({
+            dots: true
+        });
+    </script>
+</body>
+
+</html>
