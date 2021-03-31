@@ -1,90 +1,113 @@
 * {
-    margin: 0;
-    padding: 0;
-    outline: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
 }
 
 body {
-    background-color: #fff9f9;
+  background-color: #fff9f9;
 }
 
 header {
-    background-color: #b0ffde;
+  background-color: #b0ffde;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 label {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 h3 {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 .main-carousel img {
-    margin: 0 !important;
+  margin: 0 !important;
+}
+
+.available-item img {
+  max-width: 80%;
+}
+
+.item-in-cart img {
+  max-width: 60%;
 }
 
 .delete-button {
-    position: absolute;
-    right: 24px;
-    top: 24px;
+  position: absolute;
+  right: 24px;
+  top: 24px;
 }
 
 .selectable {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .selectable:hover {
-    border: 1px solid #007bff;
+  border: 1px solid #007bff;
 }
 
 .selected {
-    background-color: #d3e8ff !important;
+  background-color: #d3e8ff !important;
 }
 
 input[type="number"] {
-    max-width: 52px;
-    margin-left: 24px;
-    border: 1px solid #a9a9a9;
-    border-radius: 8px;
-    padding: 8px;
+  max-width: 52px;
+  margin-left: 24px;
+  border: 1px solid #a9a9a9;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+@media screen and (max-width: 540px) {
+  .modal-footer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-secondary {
+      margin-top: 12px;
+  }
 }
 
 .modal-footer p {
-    margin-right: 52px !important;
-    font-size: 1.25rem;
+  margin-right: 12px !important;
+  font-size: 1.25rem;
 }
 
 .validationMessage + .validationMessage {
-    display: none;
+  display: none;
 }
 
 .validationMessage {
-    color: #FF4444;
+  color: #ff4444;
 }
 
 .loading-wrapper {
-    height: 100vh;
+  height: 100vh;
 }
 
 .loader {
-    animation: animateLoader 2s linear infinite;
+  animation: animateLoader 2s linear infinite;
 }
 
 @keyframes animateLoader {
-    0% {
-        transform: rotate(0)
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }

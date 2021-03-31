@@ -178,7 +178,12 @@ function CartViewModel() {
         var errors = ko.validation.group(self);
         if (errors().length > 0)
         {
-            alert("Insira uma tarefa válida");
+            Swal.fire({
+                title: 'Ops...',
+                text: 'Os campos marcados com (*) são obrigatórios.',
+                icon: 'error',
+                confirmButtonText: 'Voltar'
+              });
             errors.showAllMessages(true);
 
             return false;
@@ -204,7 +209,17 @@ function CartViewModel() {
             complemento,
             cidade,
             estado,
-        })
+        });
+        Swal.fire({
+            title: 'Sucesso!',
+            text: 'Endereço adicionado com sucesso.',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location = window.location.pathname;
+            }
+          });
     };
 
     self.removeAddress = function() {
@@ -243,11 +258,16 @@ function CartViewModel() {
     };
 
     self.finishOrder = function() {
+        window.open(`https://wa.me/5581998300867/?text=Oi,%20tudo%20bem?%20Gostaria%20de%20fazer%20o%20pedido%20dos%20itens:%20${self.itemsInCart().map(item => {return `${item.name} (${item.quantity}x$${item.price}: $${item.quantity*item.price})`})}.%20Endereco:%20${self.selectedAddress().logradouro},%20${self.selectedAddress().numero},%20${self.selectedAddress().complemento},%20${self.selectedAddress().bairro},%20${self.selectedAddress().cidade}-${self.selectedAddress().estado},%20${self.selectedAddress().cep}.%20Forma%20de%20pagamento:%20${self.selectedPayment()}`)
         Swal.fire({
             title: 'Sucesso!',
             text: 'O seu pedido foi enviado, confira o seu e-mail para mais informações.',
             icon: 'success',
             confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location = window.location.pathname;
+            }
           });
     }
 }
