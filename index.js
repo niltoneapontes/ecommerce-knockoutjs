@@ -1,14 +1,19 @@
+$(function() {
+    $('#cep').mask('00000-000');
+    $('#numero').mask('000000');
+    $('.carousel').slick({
+        autoplay: true,
+        dots: true,
+        adaptiveHeight: false
+    })
+});
+
 ko.bindingHandlers.formatPrice = {
     update: function(element, valueAcessor) {
         let formattedPrice = '$' + valueAcessor().toFixed(2).replace('.', ',');
         $(element).text(formattedPrice);
     }
 }
-
-$(document).ready(function() {
-    $('#cep').mask('00000-000');
-    $('#numero').mask('000000');
-})  
 
 function CartViewModel() {
     let self = this;
@@ -60,6 +65,8 @@ function CartViewModel() {
     })
 
     self.addToCart = function() {
+        $(`#${this.id}`).removeClass('hidden');
+        console.log(this)
         const isAlreadyOnCart = self.itemsInCart().some(item => item.name === this.name);
         if(!isAlreadyOnCart) {
             self.itemsInCart.push({

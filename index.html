@@ -11,15 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
-        <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-        <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-        <title>Nilton's Store</title>
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <title>Nilton's Store</title>
 </head>
 
 <body class="container-fluid">
     <!-- ko if: isReady -->
     <header class="row pt-4 pb-4 d-flex justify-content-between">
-        <div class="col-3 d-flex align-items-center justify-content-center">    
+        <div class="col-3 d-flex align-items-center justify-content-center">
             <img src="shopping-cart.png" alt="Carrinho de compras" width="52">
             <h2 class="d-flex justify-content-center">Nilton's Store</h2>
         </div>
@@ -44,9 +44,12 @@
     <main class="container pt-5">
         <h1 class="text-center">Welcome to a great e-commerce. Start shopping now!</h1>
         <div class="carousel">
-            <img src="https://images.unsplash.com/photo-1580327344181-c1163234e5a0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80" alt="Vídeo games 1">
-            <img src="https://images.unsplash.com/photo-1486572788966-cfd3df1f5b42?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="Vídeo games 2">
-            <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Vídeo games 3">
+            <img src="https://images.unsplash.com/photo-1580327344181-c1163234e5a0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80"
+                alt="Vídeo games 1">
+            <img src="https://images.unsplash.com/photo-1486572788966-cfd3df1f5b42?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80"
+                alt="Vídeo games 2">
+            <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                alt="Vídeo games 3">
         </div>
         <ul class="row">
             <!-- ko foreach: availableItems -->
@@ -56,7 +59,13 @@
                     <img height="160" data-bind="attr: { src: image_url, alt: name }">
                     <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
                     <p class="card-text" data-bind="formatPrice: price"></p>
-                    <button type="button" class="btn btn-primary" data-bind="click: $parent.addToCart">Comprar agora</button>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-primary" data-bind="click: $parent.addToCart">Comprar
+                            agora</button>
+                        <div class="alert alert-success mb-0 ml-2 hidden" role="alert" data-bind="attr: {id: id}">
+                            Adicionado!
+                        </div>
+                    </div>
                 </div>
             </li>
             <!-- /ko -->
@@ -79,22 +88,23 @@
                                 <img height="120" data-bind="attr: { src: image_url, alt: name }">
                                 <div class=" ml-3 d-flex align-items-center flex-column justify-content-center">
 
-                                <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
-                                    <p class="d-flex"><strong>Preço Unit.: </strong> <span class="card-text" data-bind="formatPrice: price"></span></p>
+                                    <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
+                                    <p class="d-flex"><strong>Preço Unit.: </strong> <span class="card-text"
+                                            data-bind="formatPrice: price"></span></p>
                                     <label>
                                         <strong>Quantidade: </strong>
                                         <input type="number"
-                                        data-bind="textInput: quantity, event: {change: $parent.changeQuantity}">
+                                            data-bind="textInput: quantity, event: {change: $parent.changeQuantity}">
                                     </label>
                                 </div>
                             </li>
                             <!-- /ko -->
                         </ul>
-                            <!-- /ko -->
+                        <!-- /ko -->
                         <!-- ko if: itemsInCart().length === 0 -->
                         <h3>Oops... Não tem nada por aqui 😥</h3>
                         <p>Adicione um item ao seu carrinho.</p>
-                            <!-- /ko -->
+                        <!-- /ko -->
 
                     </div>
                     <div class="modal-footer">
@@ -159,34 +169,32 @@
 
                             <!-- /ko -->
                             <a href="#" data-toggle="modal" data-target="#addNewAddress">Adicionar endereço</a>
-                        
+
                         </div>
                         <hr>
                         <!-- ko if: selectedAddress().cep -->
-                            <div class="payment-options">
-                                <h3>Selecione a forma de pagamento</h3>
-                                <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
-                                    data-bind="click: selectPayment(1)"
-                                    id="boleto">
-                                    Boleto
-                                </a>
-                                <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
-                                    data-bind="click: selectPayment(2)"
-                                    id="cartao">
-                                    Cartão
-                                </a>
-                                <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
-                                    data-bind="click: selectPayment(3)"
-                                    id="pix">
-                                    PIX
-                                </a>
-                                <a data-bind=" visible: 0, click: selectPayment(4)"></a>
-                            </div>
+                        <div class="payment-options">
+                            <h3>Selecione a forma de pagamento</h3>
+                            <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
+                                data-bind="click: selectPayment(1)" id="boleto">
+                                Boleto
+                            </a>
+                            <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
+                                data-bind="click: selectPayment(2)" id="cartao">
+                                Cartão
+                            </a>
+                            <a class="selectable card bg-light mb-3 mt-3 pt-3 pb-3 pr-3 pl-3 d-flex flex-column align-items-start justify-content-center"
+                                data-bind="click: selectPayment(3)" id="pix">
+                                PIX
+                            </a>
+                            <a data-bind=" visible: 0, click: selectPayment(4)"></a>
+                        </div>
                         <!-- /ko -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-bind="click: finishOrder, enable: selectedPayment().length > 0">Finalizar Compra</button>
+                            data-bind="click: finishOrder, enable: selectedPayment().length > 0">Finalizar
+                            Compra</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
@@ -219,8 +227,8 @@
                         </label>
                         <label>
                             Logradouro *
-                            <input type="text" id="logradouro" class="pl-2 form-control" data-bind="textInput: logradouro"
-                                placeholder="Ex.: Rua do Sol...">
+                            <input type="text" id="logradouro" class="pl-2 form-control"
+                                data-bind="textInput: logradouro" placeholder="Ex.: Rua do Sol...">
                         </label>
                         <label>
                             Número *
@@ -234,8 +242,8 @@
                         </label>
                         <label>
                             Complemento
-                            <input type="text" id="complemento" class="pl-2 form-control" data-bind="textInput: complemento"
-                                placeholder="Ex.: Apto, casa...">
+                            <input type="text" id="complemento" class="pl-2 form-control"
+                                data-bind="textInput: complemento" placeholder="Ex.: Apto, casa...">
                         </label>
                         <label>
                             Cidade *
@@ -259,20 +267,24 @@
     </main>
     <!-- /ko -->
     <!-- ko ifnot: isReady-->
-        <div class="container d-flex flex-column align-items-center justify-content-center loading-wrapper">
-            <img class="loader" src="loading.png" alt="loader" width="52">
-            <h2>Carregando...</h2>
-        </div>
+    <div class="container d-flex flex-column align-items-center justify-content-center loading-wrapper">
+        <img class="loader" src="loading.png" alt="loader" width="52">
+        <h2>Carregando...</h2>
+    </div>
     <!-- /ko -->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="jquery-migrate-3.3.2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"
         integrity="sha512-vs7+jbztHoMto5Yd/yinM4/y2DOkPLt0fATcN+j+G4ANY2z4faIzZIOMkpBmWdcxt+596FemCh9M18NUJTZwvw=="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.4/knockout.validation.min.js"
         integrity="sha512-b99MDNv5TqiZtPKH2UeHzDAVydmgrOJEPtaPPEF8AgV86eYyqINFI/K7/7f0+R4WNTAVv8KvvpjwfOYHv5rd5g=="
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.4/knockout.validation.min.js"
+        integrity="sha512-b99MDNv5TqiZtPKH2UeHzDAVydmgrOJEPtaPPEF8AgV86eYyqINFI/K7/7f0+R4WNTAVv8KvvpjwfOYHv5rd5g=="
+        crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -281,14 +293,8 @@
         crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="jquery.mask.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.4/knockout.validation.min.js" integrity="sha512-b99MDNv5TqiZtPKH2UeHzDAVydmgrOJEPtaPPEF8AgV86eYyqINFI/K7/7f0+R4WNTAVv8KvvpjwfOYHv5rd5g==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>    <script src="index.js"></script>
-    <script type="text/javascript">
-        $('.carousel').slick({
-            dots: true
-        });
-    </script>
+    <script src="slick/slick.min.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
