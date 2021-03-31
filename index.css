@@ -6,10 +6,22 @@
 
 body {
   background-color: #fff9f9;
+  font-family: 'Roboto', sans-serif;
 }
 
 header {
-  background-color: #b0ffde;
+  background-color: #383838;
+  color: #F5F5F5;
+}
+
+header a {
+    color: #F5F5F5;
+    height: 100%;
+
+}
+
+header li {
+    height: 100%;
 }
 
 li {
@@ -23,10 +35,18 @@ label {
 
 h1 {
   font-size: 2rem;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.logo {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    margin: 0 0 0 12px;
 }
 
 h3 {
   font-size: 1.25rem;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .main-carousel img {
@@ -81,6 +101,7 @@ input[type="number"] {
 .modal-footer p {
   margin-right: 12px !important;
   font-size: 1.25rem;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .validationMessage + .validationMessage {

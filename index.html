@@ -14,28 +14,31 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Nilton's Store</title>
 </head>
 
 <body class="container-fluid">
     <!-- ko if: isReady -->
-    <header class="row pt-4 pb-4 d-flex justify-content-between">
-        <div class="col-12 col-md-3 d-flex align-items-center justify-content-center">
+    <header class="row d-flex justify-content-between">
+        <div class="col-12 col-md-3 mt-2 mb-2 d-flex align-items-center justify-content-center">
             <img src="shopping-cart.png" alt="Carrinho de compras" width="52">
-            <h2 class="d-flex justify-content-center">Nilton's Store</h2>
+            <h2 class="d-flex justify-content-center logo">Nilton's Store</h2>
         </div>
-        <ul class="nav col-12 col-md-4 d-flex justify-content-center">
+        <ul class="nav col-12 col-md-4 mt-2 mb-2 d-flex justify-content-center">
             <li class="nav-item">
-                <a class="nav-link" href="#">Jogos</a>
+                <a class="nav-link d-flex align-items-center justify-content-center" href="#games">Jogos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Consoles</a>
+                <a class="nav-link d-flex align-items-center justify-content-center" href="#consoles">Consoles</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Acessórios</a>
+                <a class="nav-link d-flex align-items-center justify-content-center" href="#accessories">Acessórios</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link d-flex align-items-center" href="#" data-toggle="modal" data-target="#cartModal">
+            <li class="nav-item d-flex align-items-center justify-content-center">
+                <a class="nav-link d-flex align-items-center align-items-center" href="#" data-toggle="modal" data-target="#cartModal">
                     <i class="fas fa-shopping-cart"></i>
                     <p class="mb-0" data-bind="text: itemsInCartFormatted"> (0)</p>
                 </a>
@@ -43,7 +46,7 @@
         </ul>
     </header>
     <main class="container pt-5">
-        <h1 class="text-center">Welcome to a great e-commerce. Start shopping now!</h1>
+        <h1 class="text-center">Tá afim de comprar jogos, acessórios para o seu console e muito mais? Confere as nossas ofertas!</h1>
         <div class="carousel">
             <img src="https://images.unsplash.com/photo-1580327344181-c1163234e5a0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80"
                 alt="Vídeo games 1">
@@ -53,22 +56,65 @@
                 alt="Vídeo games 3">
         </div>
         <ul class="row">
+            <h2 class="col-12 mt-4">Jogos</h2>
             <!-- ko foreach: availableItems -->
-            <li class="col-12 col-md-4">
-                <div
-                    class="available-item card bg-light mb-3 mt-3 pt-3 pb-3 d-flex flex-column align-items-center justify-content-center">
-                    <img height="160" data-bind="attr: { src: image_url, alt: name }">
-                    <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
-                    <p class="card-text" data-bind="formatPrice: price"></p>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary" data-bind="click: $parent.addToCart">Comprar
-                            agora</button>
-                        <div class="alert alert-success mb-0 ml-2 hidden" role="alert" data-bind="attr: {id: id}">
-                            Adicionado!
+                <!-- ko if: category === 'game'-->
+                <li class="col-12 col-md-4">
+                    <div
+                        class="available-item card bg-light mb-3 mt-3 pt-3 pb-3 d-flex flex-column align-items-center justify-content-center">
+                        <img height="160" data-bind="attr: { src: image_url, alt: name }">
+                        <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
+                        <p class="card-text" data-bind="formatPrice: price"></p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <button type="button" class="btn btn-primary" data-bind="click: $parent.addToCart">Comprar
+                                agora</button>
+                            <div class="alert alert-success mb-0 ml-2 hidden" role="alert" data-bind="attr: {id: id}">
+                                Adicionado!
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
+                </li>
+                <!-- /ko -->
+            <!-- /ko -->
+            <h2 class="col-12 mt-4">Consoles</h2>
+            <!-- ko foreach: availableItems -->
+                <!-- ko if: category === 'console'-->
+                <li class="col-12 col-md-4">
+                    <div
+                        class="available-item card bg-light mb-3 mt-3 pt-3 pb-3 d-flex flex-column align-items-center justify-content-center">
+                        <img height="160" data-bind="attr: { src: image_url, alt: name }">
+                        <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
+                        <p class="card-text" data-bind="formatPrice: price"></p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <button type="button" class="btn btn-primary" data-bind="click: $parent.addToCart">Comprar
+                                agora</button>
+                            <div class="alert alert-success mb-0 ml-2 hidden" role="alert" data-bind="attr: {id: id}">
+                                Adicionado!
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- /ko -->
+            <!-- /ko -->
+            <h2 class="col-12 mt-4">Acessórios</h2>
+            <!-- ko foreach: availableItems -->
+                <!-- ko if: category === 'accessories'-->
+                <li class="col-12 col-md-4">
+                    <div
+                        class="available-item card bg-light mb-3 mt-3 pt-3 pb-3 d-flex flex-column align-items-center justify-content-center">
+                        <img height="160" data-bind="attr: { src: image_url, alt: name }">
+                        <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
+                        <p class="card-text" data-bind="formatPrice: price"></p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <button type="button" class="btn btn-primary" data-bind="click: $parent.addToCart">Comprar
+                                agora</button>
+                            <div class="alert alert-success mb-0 ml-2 hidden" role="alert" data-bind="attr: {id: id}">
+                                Adicionado!
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- /ko -->
             <!-- /ko -->
         </ul>
         <div class="modal" id="cartModal" tabindex="-1" role="dialog">
@@ -84,21 +130,21 @@
                         <!-- ko if: itemsInCart().length > 0 -->
                         <ul>
                             <!-- ko foreach: itemsInCart -->
-                            <li
-                                class="item-in-cart card bg-light mb-3 mt-3 pt-3 pb-3 pl-4 pr-4 d-flex flex-row align-items-center justify-content-between">
-                                <img height="120" data-bind="attr: { src: image_url, alt: name }">
-                                <div class=" ml-3 d-flex align-items-center flex-column justify-content-center">
+                                <li
+                                    class="item-in-cart card bg-light mb-3 mt-3 pt-3 pb-3 pl-4 pr-4 d-flex flex-row align-items-center justify-content-between">
+                                    <img height="120" data-bind="attr: { src: image_url, alt: name }">
+                                    <div class=" ml-3 d-flex align-items-center flex-column justify-content-center">
 
-                                    <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
-                                    <p class="d-flex"><strong>Preço Unit.: </strong> <span class="card-text"
-                                            data-bind="formatPrice: price"></span></p>
-                                    <label>
-                                        <strong>Quantidade: </strong>
-                                        <input type="number"
-                                            data-bind="textInput: quantity, event: {change: $parent.changeQuantity}">
-                                    </label>
-                                </div>
-                            </li>
+                                        <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
+                                        <p class="d-flex"><strong>Preço Unit.: </strong> <span class="card-text"
+                                                data-bind="formatPrice: price"></span></p>
+                                        <label>
+                                            <strong>Quantidade: </strong>
+                                            <input type="number"
+                                                data-bind="textInput: quantity, event: {change: $parent.changeQuantity}">
+                                        </label>
+                                    </div>
+                                </li>
                             <!-- /ko -->
                         </ul>
                         <!-- /ko -->

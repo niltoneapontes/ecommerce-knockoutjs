@@ -4,7 +4,9 @@ $(function() {
     $('.carousel').slick({
         autoplay: true,
         dots: true,
-        adaptiveHeight: false
+        adaptiveHeight: false,
+        infinite: true,
+        slidesToShow: 2,
     })
 });
 
@@ -27,26 +29,65 @@ function CartViewModel() {
             id: 1,
             image_url: 'https://images.unsplash.com/photo-1605835963874-a7c87f56259e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80',
             name: 'PS4 Controller FOR SALE $$$',
-            price: 100
+            price: 100,
+            category: 'accessories'
         },
         {
             id: 2,
             image_url: 'https://images.unsplash.com/photo-1605899435973-ca2d1a8861cf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80',
             name: 'XBox Controller FOR SALE $$$',
-            price: 150
+            price: 150,
+            category: 'accessories'
         },
         {
             id: 3,
             image_url: 'https://images.unsplash.com/photo-1604586409773-61d0738e5aa1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8eGJveCUyMHNlcmllcyUyMHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
             name: 'XBOX Series S',
-            price: 500
+            price: 500,
+            category: 'console'
         },
         {
             id: 4,
             image_url: 'https://images.unsplash.com/photo-1507457379470-08b800bebc67?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1084&q=80',
             name: 'PlayStation 4',
-            price: 550
-        }
+            price: 550,
+            category: 'console'
+        },
+        {
+            id: 5,
+            image_url: 'https://images.unsplash.com/photo-1543622748-5ee7237e8565?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+            name: 'Collection Nintendo',
+            price: 125.50,
+            category: 'game'
+        },
+        {
+            id: 6,
+            image_url: 'https://images.unsplash.com/photo-1612404730960-5c71577fca11?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fG1hcmlvfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+            name: 'Super Mario (A New Journey)',
+            price: 75.90,
+            category: 'game'
+        },
+        {
+            id: 7,
+            image_url: 'https://images.unsplash.com/photo-1599409636295-e3cf3538f212?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjB8fG1hcmlvfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+            name: 'Mario Kart (Remake)',
+            price: 95.99,
+            category: 'game'
+        },
+        {
+            id: 8,
+            image_url: 'https://images.unsplash.com/photo-1585857188938-2f7ae5afb6f8?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fG5pbnRlbmRvJTIwc3dpdGNofGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+            name: 'Animal Crossing',
+            price: 45.90,
+            category: 'game'
+        },
+        {
+            id: 9,
+            image_url: 'https://images.unsplash.com/photo-1612036781124-847f8939b154?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8bmludGVuZG8lMjBzd2l0Y2h8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+            name: 'Nintendo Switch',
+            price: 350.95,
+            category: 'console'
+        },
     ]);
 
     self.itemsInCart = ko.observableArray([]);
