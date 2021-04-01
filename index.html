@@ -159,11 +159,12 @@
                                         <h3 class="mt-3 text-center card-title" data-bind="text: name"></h3>
                                         <p class="d-flex"><strong>Preço Unit.: </strong> <span class="card-text"
                                                 data-bind="formatPrice: price"></span></p>
-                                        <label>
+                                        <label class="d-flex flex-column align-items-center justify-content-center">
                                             <strong>Quantidade: </strong>
-                                            <input type="number" min="0"
+                                            <input type="number" min="1"
                                                 data-bind="textInput: quantity, event: {change: $parent.changeQuantity}">
                                         </label>
+                                        <button class="btn btn-link" data-bind="click: $parent.removeItem">Remover</button>
                                     </div>
                                 </li>
                             <!-- /ko -->

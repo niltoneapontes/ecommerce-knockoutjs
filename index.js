@@ -127,6 +127,10 @@ function CartViewModel() {
         self.itemsInCart(newItemArray);
     }
 
+    self.removeItem = function() {
+        self.itemsInCart.remove(this);
+    }
+
     self.addressesBook = ko.observableArray([{
         alias: 'Casa',
         cep: '50610-130',
