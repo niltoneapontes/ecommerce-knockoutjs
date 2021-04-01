@@ -1,13 +1,6 @@
 $(function() {
     $('#cep').mask('00000-000');
     $('#numero').mask('000000');
-    $('.carousel').slick({
-        autoplay: true,
-        dots: true,
-        adaptiveHeight: false,
-        infinite: true,
-        slidesToShow: 2,
-    })
 });
 
 ko.bindingHandlers.formatPrice = {
